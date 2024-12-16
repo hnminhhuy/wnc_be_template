@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres_final_test
+    restart: on-failure
+    environment:
+      POSTGRES_USER: ${PG_USERNAME}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_MULTIPLE_DATABASES: ${PG_DATABASE}
+    ports:
+      - '${PG_PORT}:5432'
+    volumes:
+      - ./multi_pg_databases:/docker-entrypoint-initdb.d
+      - postgres_final_test:/var/lib/postgresql/data
+volumes:
+  postgres_final_test:
