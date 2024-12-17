@@ -5,6 +5,7 @@ import databaseConfig from 'src/config/database.config';
 import swaggerConfig from 'src/config/swagger.config';
 import { AppController } from './app.controller';
 import { PostModule } from 'src/modules/post/post.module';
+import { CommentModule } from 'src/modules/comments/comment.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PostModule } from 'src/modules/post/post.module';
       useFactory: (configService: ConfigService) => configService.getOrThrow<TypeOrmModuleAsyncOptions>('database') as TypeOrmModule,
     }),
     PostModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [],

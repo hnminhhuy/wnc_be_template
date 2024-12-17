@@ -11,6 +11,8 @@ export const initApplication = async (): Promise<INestApplication> => {
 
   const origins = configService.get<string>('CORS_ORIGINS', '');
 
+  console.log(origins.split(','));
+
   app.enableCors({
     origin: origins.split(','),
     credentials: true,

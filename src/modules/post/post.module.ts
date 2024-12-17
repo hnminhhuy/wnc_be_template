@@ -4,9 +4,8 @@ import { PostEntity } from './infra/data/entities/post.entity';
 import { PostController } from './app/controller/post.controller';
 import { IPostRepo } from './core/repositories/post.irepo';
 import { PostRepo } from './infra/data/repositories/post.repo';
-import { CreatePostUsecase } from './core/usecases/create_post.usecase';
-import { ListPostsUsecase } from './core/usecases/list_posts.usecase';
-import { GetPostUsecase } from './core/usecases/get_post.usecase';
+import { PostDatasource } from './infra/data/post.datasource';
+import { CreatePostUsecase, GetPostUsecase, ListPostsUsecase } from './core/usecases';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PostEntity])],
@@ -16,6 +15,7 @@ import { GetPostUsecase } from './core/usecases/get_post.usecase';
       provide: IPostRepo,
       useClass: PostRepo,
     },
+    PostDatasource,
     CreatePostUsecase,
     ListPostsUsecase,
     GetPostUsecase,

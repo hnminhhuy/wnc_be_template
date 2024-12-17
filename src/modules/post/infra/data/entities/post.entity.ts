@@ -1,3 +1,4 @@
+import { PostModel } from 'src/modules/post/core/models/post.model';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity({ name: 'posts' })
@@ -22,4 +23,8 @@ export class PostEntity {
 
   @Column({ name: 'updated_at' })
   public readonly updatedAt: Date;
+
+  constructor(params: Partial<PostModel>) {
+    Object.assign(this, params);
+  }
 }
