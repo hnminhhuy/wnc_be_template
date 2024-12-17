@@ -16,7 +16,7 @@ export const initApplication = async (): Promise<INestApplication> => {
   app.enableCors({
     origin: origins.split(','),
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   });
 

@@ -16,4 +16,8 @@ export class PostRepo implements IPostRepo {
   public async findById(id: number): Promise<PostModel | undefined> {
     return this.postDatasource.findById(id);
   }
+
+  public update(id: number, params: Partial<PostModelParams>) {
+    return this.postDatasource.update(id, params);
+  }
 }
