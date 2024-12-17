@@ -4,22 +4,23 @@ import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import databaseConfig from 'src/config/database.config';
 import swaggerConfig from 'src/config/swagger.config';
 import { AppController } from './app.controller';
+import { PostModule } from 'src/modules/post/post.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({
-    isGlobal: true,
-    load: [
-      databaseConfig,
-      swaggerConfig
-    ]
-  }),
-  TypeOrmModule.forRootAsync({
-    imports: [ConfigModule],
-    inject: [ConfigService],
-    useFactory: (configService: ConfigService) => configService.getOrThrow<TypeOrmModuleAsyncOptions>('database') as TypeOrmModule
-  })],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [databaseConfig, swaggerConfig],
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => configService.getOrThrow<TypeOrmModuleAsyncOptions>('database') as TypeOrmModule,
+    }),
+    PostModule,
+  ],
   controllers: [AppController],
   providers: [],
-  exports: []
+  exports: [],
 })
 export class AppModule {}
